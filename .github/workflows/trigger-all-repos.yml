@@ -20,6 +20,10 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Install dependencies
+        run: |
+          pip install -r Tools/trigger-all-repos/requirements.txt
+
       - name: Run trigger script
         run: |
           python Tools/trigger-all-repos/trigger-all-repos.py
