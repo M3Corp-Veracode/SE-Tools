@@ -1,0 +1,25 @@
+name: Trigger All Repos
+
+on:
+  workflow_dispatch:
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      ORG_NAME: ${{ github.repository_owner }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run trigger script
+        run: |
+          python Tools/trigger-all-repos/trigger-all-repos.py
